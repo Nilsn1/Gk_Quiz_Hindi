@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,20 +18,27 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
-    TextView txtCurrentQuestion, txtAllQuestionno, txtQuestion, optionA, optionB, optionC, optionD, txtNext;
+    TextView toolbarTitle, txtCurrentQuestion, txtAllQuestionno, txtQuestion, optionA, optionB, optionC, optionD, txtNext;
+
+    ProgressBar progressbar;
     ArrayList<QuizModel> datalist;
     int indexNumber = 0;
     int currentQuestionNumber = 1;
     int datalistSize;
     int correctAnswers = 0;
 
+    String categoryName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        toolbarTitle = findViewById(R.id.toolbarTitle);
         txtCurrentQuestion = findViewById(R.id.txtCurrentQuestion);
         txtAllQuestionno = findViewById(R.id.txtAllQuestionno);
         txtQuestion = findViewById(R.id.txtQuestion);
@@ -39,8 +47,12 @@ public class MainActivity extends AppCompatActivity {
         optionC = findViewById(R.id.optionC);
         optionD = findViewById(R.id.optionD);
         txtNext = findViewById(R.id.txtNext);
+        progressbar = findViewById(R.id.progressbar);
 
         datalist = new ArrayList<>();
+
+        Intent intent = getIntent();
+        categoryName = intent.getStringExtra("Category");
 
         getQuestions();
         txtNext.setOnClickListener(new View.OnClickListener() {
@@ -111,11 +123,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         txtNext.setClickable(false);
+        optionA.setClickable(false);
+        optionB.setClickable(false);
+        optionC.setClickable(false);
+        optionD.setClickable(false);
     }
 
     private void getQuestions() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Quiz DB");
-        databaseReference.child("Quiz1").addValueEventListener(new ValueEventListener() {
+        databaseReference.child(categoryName).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 datalist.clear();
@@ -123,9 +139,13 @@ public class MainActivity extends AppCompatActivity {
                     QuizModel quizModel = dataSnapshot.getValue(QuizModel.class);
                     datalist.add(quizModel);
                 }
+                Collections.shuffle(datalist);
                 datalistSize = datalist.size();
                 setQuestions();
                 txtAllQuestionno.setText("" + datalistSize);
+
+                progressbar.setVisibility(View.GONE);
+                enableButtons();
             }
 
             @Override
@@ -139,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
     private void setQuestions() {
 
         if (indexNumber < datalistSize) {
+            toolbarTitle.setText(categoryName + " Quiz");
             txtCurrentQuestion.setText("" + currentQuestionNumber);
             txtQuestion.setText("Q. " + datalist.get(indexNumber).getQuestion());
             optionA.setText("A) " + datalist.get(indexNumber).getOptionA());
