@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,8 +23,9 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
-    TextView toolbarTitle, txtCurrentQuestion, txtAllQuestionno, txtQuestion, optionA, optionB, optionC, optionD, txtNext;
 
+    ImageView btnBack;
+    TextView toolbarTitle, txtCurrentQuestion, txtAllQuestionno, txtQuestion, optionA, optionB, optionC, optionD, txtNext;
     ProgressBar progressbar;
     ArrayList<QuizModel> datalist;
     int indexNumber = 0;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        btnBack = findViewById(R.id.btnBack);
         toolbarTitle = findViewById(R.id.toolbarTitle);
         txtCurrentQuestion = findViewById(R.id.txtCurrentQuestion);
         txtAllQuestionno = findViewById(R.id.txtAllQuestionno);
@@ -127,6 +130,13 @@ public class MainActivity extends AppCompatActivity {
         optionB.setClickable(false);
         optionC.setClickable(false);
         optionD.setClickable(false);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     private void getQuestions() {
