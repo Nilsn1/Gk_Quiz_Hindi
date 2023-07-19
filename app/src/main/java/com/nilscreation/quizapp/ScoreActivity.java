@@ -4,20 +4,47 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
-public class ScoreActivity extends AppCompatActivity {
+import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
-    TextView txtCorrectAns;
+public class ScoreActivity extends AppCompatActivity {
+    CircularProgressBar circularProgressBar;
+
+    TextView txtResult, txtAllQuestion, txtRight, txtWrong, btnHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
-        txtCorrectAns = findViewById(R.id.txtCorrectAns);
+        circularProgressBar = findViewById(R.id.circularProgressBar);
+        txtResult = findViewById(R.id.txtResult);
+        txtAllQuestion = findViewById(R.id.txtAllQuestion);
+        txtRight = findViewById(R.id.txtRight);
+        txtWrong = findViewById(R.id.txtWrong);
+        btnHome = findViewById(R.id.btnHome);
+
         Intent intent = getIntent();
         int mCorrectAnswers = intent.getIntExtra("CorrectAnswers", 0);
-        txtCorrectAns.setText("" + mCorrectAnswers);
+        int mTotalQuestions = intent.getIntExtra("TotalQuestions", 0);
+        int mWrongAnswers = mTotalQuestions - mCorrectAnswers;
+
+        txtResult.setText("" + mCorrectAnswers + " / " + mTotalQuestions);
+        txtAllQuestion.setText("Total Questions: " + mTotalQuestions);
+        txtRight.setText("Right Answers: " + mCorrectAnswers);
+        txtWrong.setText("Wrong Answers: " + mWrongAnswers);
+
+        circularProgressBar.setProgress(mCorrectAnswers);
+        circularProgressBar.setProgressMax(mTotalQuestions);
+
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ScoreActivity.this, DashboardActivity.class));
+                finish();
+            }
+        });
     }
 }

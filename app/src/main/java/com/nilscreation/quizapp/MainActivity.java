@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 currentQuestionNumber = currentQuestionNumber + 1;
                 setQuestions();
                 enableButtons();
-                Toast.makeText(MainActivity.this, " " + correctAnswers, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, " " + correctAnswers, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Intent intent = new Intent(MainActivity.this, ScoreActivity.class);
             intent.putExtra("CorrectAnswers", correctAnswers);
+            intent.putExtra("TotalQuestions", datalistSize);
             startActivity(intent);
             finish();
         }
