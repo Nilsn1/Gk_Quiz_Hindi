@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 disableButtons();
                 if (datalist.get(indexNumber).getOptionA().equals(datalist.get(indexNumber).getAnswer())) {
-                    optionA.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.green_card));
                     correctAnswers = correctAnswers + 1;
+                    optionA.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.green_card));
                 } else {
                     optionA.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.red_card));
                     getRightAnswer();
@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 disableButtons();
                 if (datalist.get(indexNumber).getOptionB().equals(datalist.get(indexNumber).getAnswer())) {
-                    optionB.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.green_card));
                     correctAnswers = correctAnswers + 1;
+                    optionB.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.green_card));
                 } else {
                     optionB.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.red_card));
                     getRightAnswer();
@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 disableButtons();
                 if (datalist.get(indexNumber).getOptionC().equals(datalist.get(indexNumber).getAnswer())) {
-                    optionC.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.green_card));
                     correctAnswers = correctAnswers + 1;
+                    optionC.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.green_card));
                 } else {
                     optionC.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.red_card));
                     getRightAnswer();
@@ -102,8 +102,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 disableButtons();
                 if (datalist.get(indexNumber).getOptionD().equals(datalist.get(indexNumber).getAnswer())) {
-                    optionD.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.green_card));
                     correctAnswers = correctAnswers + 1;
+                    optionD.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.green_card));
                 } else {
                     optionD.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.red_card));
                     getRightAnswer();
@@ -149,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, ScoreActivity.class);
             intent.putExtra("CorrectAnswers", correctAnswers);
             startActivity(intent);
+            finish();
         }
     }
 
