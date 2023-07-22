@@ -3,10 +3,11 @@
     <color name="primary">#8B80F6</color>
     <color name="primary2">#9D54D5</color>
     <color name="Main_background">#E8EBFD</color>
-    <color name="card_background">#FFFFFFFF</color>
+    <color name="card_background">#F4F5F7</color>
+    <color name="text_color">#50575D</color>
     <color name="text_primary">#263046</color>
     <color name="text_secondary">#3C4B6C</color>
-    <color name="text_tirtary">#696E72</color>
+    <color name="border_color">#EBECEE</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green">#0DC300</color>

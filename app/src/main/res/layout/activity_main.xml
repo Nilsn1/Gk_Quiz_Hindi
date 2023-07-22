@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Main_background"
+
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -93,8 +93,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunito_extrabold"
             android:text="Question"
-            android:textColor="@color/text_primary"
-            android:textSize="17sp" />
+            android:textColor="@color/text_color"
+            android:textSize="20sp" />
 
         <ProgressBar
             android:id="@+id/progressbar"
@@ -114,8 +114,8 @@
         android:fontFamily="@font/nunito_extrabold"
         android:padding="15dp"
         android:text="Option A"
-        android:textColor="@color/text_primary"
-        android:textSize="17sp" />
+        android:textColor="@color/text_color"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/optionB"
@@ -127,8 +127,8 @@
         android:fontFamily="@font/nunito_extrabold"
         android:padding="15dp"
         android:text="Option B"
-        android:textColor="@color/text_primary"
-        android:textSize="17sp" />
+        android:textColor="@color/text_color"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/optionC"
@@ -140,8 +140,8 @@
         android:fontFamily="@font/nunito_extrabold"
         android:padding="15dp"
         android:text="Option C"
-        android:textColor="@color/text_primary"
-        android:textSize="17sp" />
+        android:textColor="@color/text_color"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/optionD"
@@ -153,8 +153,8 @@
         android:fontFamily="@font/nunito_extrabold"
         android:padding="15dp"
         android:text="Option D"
-        android:textColor="@color/text_primary"
-        android:textSize="17sp" />
+        android:textColor="@color/text_color"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/txtNext"
