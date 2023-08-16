@@ -1,4 +1,4 @@
-package com.nilscreation.quizapp;
+package com.nilscreation.gkquizhindi;
 
 public class QuizModel {
     String question;

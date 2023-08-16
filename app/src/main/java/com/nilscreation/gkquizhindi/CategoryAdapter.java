@@ -1,4 +1,4 @@
-package com.nilscreation.quizapp;
+package com.nilscreation.gkquizhindi;
 
 import android.content.Context;
 import android.content.Intent;

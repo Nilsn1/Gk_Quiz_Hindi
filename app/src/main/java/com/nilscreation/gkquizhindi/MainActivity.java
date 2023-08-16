@@ -1,4 +1,4 @@
-package com.nilscreation.quizapp;
+package com.nilscreation.gkquizhindi;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {

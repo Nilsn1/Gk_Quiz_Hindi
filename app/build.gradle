@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.nilscreation.quizapp'
+    namespace 'com.nilscreation.gkquizhindi'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.nilscreation.quizapp"
+        applicationId "com.nilscreation.gkquizhindi"
         minSdk 24
         targetSdk 33
         versionCode 1
