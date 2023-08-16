@@ -11,8 +11,7 @@ import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 public class ScoreActivity extends AppCompatActivity {
     CircularProgressBar circularProgressBar;
-
-    TextView txtResult, txtAllQuestion, txtRight, txtWrong, btnHome;
+    TextView txtResult, txtAllQuestion, txtRight, txtWrong, btnHome, btnexit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +24,7 @@ public class ScoreActivity extends AppCompatActivity {
         txtRight = findViewById(R.id.txtRight);
         txtWrong = findViewById(R.id.txtWrong);
         btnHome = findViewById(R.id.btnHome);
+        btnexit = findViewById(R.id.btnexit);
 
         Intent intent = getIntent();
         int mCorrectAnswers = intent.getIntExtra("CorrectAnswers", 0);
@@ -38,12 +38,17 @@ public class ScoreActivity extends AppCompatActivity {
 
         circularProgressBar.setProgress(mCorrectAnswers);
         circularProgressBar.setProgressMax(mTotalQuestions);
-
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ScoreActivity.this, DashboardActivity.class));
                 finish();
+            }
+        });
+        btnexit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finishAffinity();
             }
         });
     }
