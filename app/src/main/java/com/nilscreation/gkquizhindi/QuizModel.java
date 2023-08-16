@@ -7,17 +7,19 @@ public class QuizModel {
     String optionC;
     String optionD;
     String answer;
+    String category;
 
     public QuizModel() {
     }
 
-    public QuizModel(String question, String optionA, String optionB, String optionC, String optionD, String answer) {
+    public QuizModel(String question, String optionA, String optionB, String optionC, String optionD, String answer, String category) {
         this.question = question;
         this.optionA = optionA;
         this.optionB = optionB;
         this.optionC = optionC;
         this.optionD = optionD;
         this.answer = answer;
+        this.category = category;
     }
 
     public String getQuestion() {
@@ -66,5 +68,13 @@ public class QuizModel {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

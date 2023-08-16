@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 disableButtons();
+                optionA.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
                 if (datalist.get(indexNumber).getOptionA().equals(datalist.get(indexNumber).getAnswer())) {
                     correctAnswers = correctAnswers + 1;
                     optionA.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.green_card));
@@ -87,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 disableButtons();
+                optionB.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
                 if (datalist.get(indexNumber).getOptionB().equals(datalist.get(indexNumber).getAnswer())) {
                     correctAnswers = correctAnswers + 1;
                     optionB.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.green_card));
@@ -101,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 disableButtons();
+                optionC.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
                 if (datalist.get(indexNumber).getOptionC().equals(datalist.get(indexNumber).getAnswer())) {
                     correctAnswers = correctAnswers + 1;
                     optionC.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.green_card));
@@ -115,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 disableButtons();
+                optionD.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
                 if (datalist.get(indexNumber).getOptionD().equals(datalist.get(indexNumber).getAnswer())) {
                     correctAnswers = correctAnswers + 1;
                     optionD.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.green_card));
@@ -139,14 +144,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getQuestions() {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Quiz DB");
-        databaseReference.child(categoryName).addValueEventListener(new ValueEventListener() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Quiz Database");
+        databaseReference.child("Questions").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 datalist.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     QuizModel quizModel = dataSnapshot.getValue(QuizModel.class);
-                    datalist.add(quizModel);
+                    if (categoryName.equals(quizModel.getCategory())) {
+                        datalist.add(quizModel);
+                    }
                 }
                 Collections.shuffle(datalist);
                 datalistSize = datalist.size();
@@ -193,6 +200,10 @@ public class MainActivity extends AppCompatActivity {
         optionB.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.white_card));
         optionC.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.white_card));
         optionD.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.white_card));
+        optionA.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.text_color));
+        optionB.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.text_color));
+        optionC.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.text_color));
+        optionD.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.text_color));
     }
 
     private void disableButtons() {
@@ -206,12 +217,16 @@ public class MainActivity extends AppCompatActivity {
     private void getRightAnswer() {
         if (datalist.get(indexNumber).getOptionA().equals(datalist.get(indexNumber).getAnswer())) {
             optionA.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.green_card));
+            optionA.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
         } else if (datalist.get(indexNumber).getOptionB().equals(datalist.get(indexNumber).getAnswer())) {
             optionB.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.green_card));
+            optionB.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
         } else if (datalist.get(indexNumber).getOptionC().equals(datalist.get(indexNumber).getAnswer())) {
             optionC.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.green_card));
+            optionC.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
         } else {
             optionD.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.green_card));
+            optionD.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
         }
     }
 }
